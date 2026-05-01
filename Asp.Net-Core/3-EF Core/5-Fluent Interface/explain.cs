@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ConsoleApp1
 {
-    internal class Program
+    internal class explain
     {
         static void Main(string[] args)
         {
