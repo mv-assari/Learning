@@ -1,0 +1,16 @@
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\bin\Debug\net5.0\Application.deps.json
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\bin\Debug\net5.0\Application.dll
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\bin\Debug\net5.0\Application.pdb
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\bin\Debug\net5.0\Entities.dll
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\bin\Debug\net5.0\Entities.pdb
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.csproj.AssemblyReference.cache
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.AssemblyInfoInputs.cache
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.AssemblyInfo.cs
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.csproj.CoreCompileInputs.cache
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.sourcelink.json
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Applicat.44B5EDA2.Up2Date
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.dll
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\refint\Application.dll
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\Application.pdb
+F:\Learning\Learning\Asp.Net-Core\3-EF Core\19-EFCore5InClean\EFCore5InClean\Application\obj\Debug\net5.0\ref\Application.dll
