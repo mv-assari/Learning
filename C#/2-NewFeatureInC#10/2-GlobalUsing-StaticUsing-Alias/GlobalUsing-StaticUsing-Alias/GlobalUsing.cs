@@ -1,0 +1,1 @@
+﻿global using GlobalUsing_StaticUsing_Alias.entities;
