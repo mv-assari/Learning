@@ -1,0 +1,10 @@
+بخشهای مهم یک فایل xml
+
+XDocument
+XDeclaration
+XComment
+XElement
+XAttribute
+
+برای استفاده آن در پروژه خودمون کافیه فضای نام زیر رو اضافه کرد
+using system.xml.linq
