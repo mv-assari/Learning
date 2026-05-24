@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- این فایل نمونه‌ای از ساختار XML برای لیست محصولات است -->
+<store>
+
+    <products>
+        <product id="101" category="electronics">
+            <name>لپ‌تاپ ایسوس</name>
+            <brand>Asus</brand>
+            <price currency="IRR">45,000,000</price>
+            <inStock>true</inStock>
+            <specs>
+                <ram>16GB</ram>
+                <storage>512GB SSD</storage>
+            </specs>
+        </product>
+
+        <product id="102" category="accessories">
+            <name>هدفون بی‌سیم</name>
+            <brand>Apple</brand>
+            <price currency="IRR">8,500,000</price>
+            <inStock>false</inStock>
+            <specs>
+                <connectivity>Bluetooth 5.0</connectivity>
+                <batteryLife>30 hours</batteryLife>
+            </specs>
+        </product>
+    </products>
+</store>
