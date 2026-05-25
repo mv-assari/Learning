@@ -35,6 +35,7 @@ public class TestClass:IDisposable //هر کلاسی یا کتابخانه یا 
     {
         // DataBase.Dispose();
         Console.WriteLine("testclass dispose()");
+        GC.SuppressFinalize(this);
     }
 
     // finalize (~)
