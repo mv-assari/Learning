@@ -1,0 +1,61 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+@* <form asp-controller="Home" asp-action="Index" method="post">  *@
+@* <form method="post"> *@
+
+<form asp-route="indexRoute" method="post">
+
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" />
+
+    <br />
+
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+
+    <br />
+    <label asp-for="Gender"></label>
+    <input asp-for="Gender" />
+
+    <br />
+    <label asp-for="Age"></label>
+    <input asp-for="Age" />
+    <span asp-validation-for="Age"></span>
+
+    <br />
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <br />
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+
+    <br />
+    <label asp-for="WebSite"></label>
+    <input asp-for="WebSite" />
+
+    <br />
+    <label asp-for="Address.HomeAddress"></label>
+    <input asp-for="Address.HomeAddress" />
+
+    <br />
+    <label asp-for="Address.WorkAddress"></label>
+    <input asp-for="Address.WorkAddress" />
+
+    <br />
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description"></textarea>
+
+    <br />
+    <button asp-route="indexRoute">send</button>
+</form>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
