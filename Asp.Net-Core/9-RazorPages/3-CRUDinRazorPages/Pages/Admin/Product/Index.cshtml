@@ -1,0 +1,33 @@
+﻿@page
+@model ConfigRazorPages.Pages.Admin.Product.IndexModel
+@{
+}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var product in Model.Products)
+            {
+                <tr>
+                    <th>@product.Id</th>
+                    <th>@product.Name</th>
+                    <th>@product.Description</th>
+                    <th>@product.Price</th>
+                    <th>
+                        <a asp-page="Delete" asp-route-id="@product.Id">Delete</a>
+                        <a asp-page="Edit" asp-route-id="@product.Id">Edit</a>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
