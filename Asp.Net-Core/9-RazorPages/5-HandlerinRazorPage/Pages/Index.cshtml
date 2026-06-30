@@ -1,0 +1,31 @@
+﻿@* اگر بخواهیم به صورت روت بین متدهای مختلف جابه جا شویم از این کار استفاده میکنیم *@
+@page "{handler?}/{id?}"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<form  asp-route-id="100" method="post">
+    <h1>MultiAction</h1>
+    <button asp-page-handler="SendComment" type="submit">send comment</button>
+    <button asp-page-handler="Subscribe" type="submit">subscribe</button>
+</form>
+
+<hr />
+
+<form asp-page-handler="SendComment" asp-route-id="100" method="post">
+    <h1>send comment</h1>
+    <button type="submit">send comment</button>
+</form>
+
+<form asp-page-handler="Subscribe" asp-route-id="210" method="post">
+    <h1>Subscribing</h1>
+    <button type="submit">Subscribe</button>
+</form>
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
