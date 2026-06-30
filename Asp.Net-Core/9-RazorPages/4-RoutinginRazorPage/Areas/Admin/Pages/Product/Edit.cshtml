@@ -1,0 +1,28 @@
+﻿@page
+@model ConfigRazorPages.Pages.Admin.Product.EditModel
+@{
+}
+
+<h1>Edit Prodcut</h1>
+<hr />
+<div class="row">
+    <form method="post" asp-page="Edit">
+        <input type="hidden" asp-for="Product.Id" />
+        <div class="form-group">
+            <label asp-for="Product.Name" class="form-control"></label>
+            <input asp-for="Product.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Price" class="form-control"></label>
+            <input asp-for="Product.Price" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Description" class="form-control"></label>
+            <textarea asp-for="Product.Description"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Edit" class="btn btn-warning" />
+            <a asp-page="./Index">Back</a>
+        </div>
+    </form>
+</div>

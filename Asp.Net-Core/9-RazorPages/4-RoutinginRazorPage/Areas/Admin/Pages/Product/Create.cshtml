@@ -1,0 +1,26 @@
+﻿@page
+@model ConfigRazorPages.Pages.Admin.Product.CreateModel
+@{
+}
+
+<h1>Add Prodcut</h1>
+<hr />
+<div class="row">
+    <form method="post" asp-page="Create">
+        <div class="form-group">
+            <label asp-for="Product.Name" class="form-control"></label>
+            <input asp-for="Product.Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Price" class="form-control"></label>
+            <input asp-for="Product.Price" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Product.Description" class="form-control"></label>
+            <textarea asp-for="Product.Description"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

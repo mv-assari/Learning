@@ -1,0 +1,18 @@
+﻿@* از طریق کوئری استرینگ هم میشه این کار را انجام دهیم و پارامترهای مورد نیاز را دریافت کنیم *@
+@* برای اینکه بتونیم در روت پارامترهای مورد نیاز رو بگیریم ازین کار استفاده میکنیم *@
+@page "{id:int?}/{name:alpha:minlength(3):maxlength}/{id2:min(100)}" 
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@* برای دسترسی به پارامترهای ارسالی کاربر در فرانت از روش زیر استفاده میکنیم *@
+<h2>@RouteData.Values["id"]</h2>
+<h2>@RouteData.Values["name"]</h2>
+<h2>from model:@Model.Name</h2>
+
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
