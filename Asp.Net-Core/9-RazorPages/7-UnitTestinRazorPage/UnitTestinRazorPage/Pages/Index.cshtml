@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<div class="container">
+    <form method="post">
+        <label asp-for="viewModelSum.Value1"></label>
+        <input asp-for="viewModelSum.Value1" class="form-control" />
+        <label asp-for="viewModelSum.Value2"></label>
+        <input asp-for="viewModelSum.Value2" class="form-control" />
+
+        <button class="btn btn-outline-primary" type="submit" >Sum</button>
+    </form>
+
+    <h2 style="color:chocolate">
+        <text>@Model.viewModelSum.Value1</text>
+        +
+        <text>@Model.viewModelSum.Value2</text>
+        =
+        <text>@Model.viewModelSum.Result</text>
+    </h2>
+</div>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
