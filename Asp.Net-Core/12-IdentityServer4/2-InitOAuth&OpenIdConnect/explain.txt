@@ -1,0 +1,9 @@
+پروتکل OAuth
+پروتکلی هست که کار 
+Authorization 
+رو برای ما انجام میده که برای عمل 
+Authentication
+هم در کنار اون از 
+Open Id Connect 
+استفاده میشه 
+
