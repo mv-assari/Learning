@@ -1,0 +1,6 @@
+مزیت های WebApi
+
+1-Convention-Based CRUD actions
+2-Biult-in Convent Negotiation
+3-OData=open protocol data
+4-Self-Hosting
