@@ -1,0 +1,12 @@
+به دلیل پیچیدگی در پیاده سازی معماری 
+Rest
+یه بنده خدایی اومد گفت اگه این چهار سطح رو بتونی اوکی کنی میتونی ادعا کنی که 
+Restful
+کار کردی
+
+1-Uri + Http verb for call
+2-Multiple Uri + single Http verb
+3-Multiple Uri + Multiple Http verb
+4- level 3 + HATEOAS
+
+HATEOAS=یعنی ما فقط ریشه رو به کلاینت میدیم و در ریشه تمام موارد مورد نیاز از آدرس های دیگه مورد نیاز کلاینت وجود دارد
