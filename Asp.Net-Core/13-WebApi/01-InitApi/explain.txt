@@ -1,0 +1,11 @@
+در قدیم ارتباط نرم افزار فقط با انسان بوده
+درحال حاضر ارتباط بین دو نرم افزار نیز وجود دارد که از
+Application Programing Interface (Api)
+استفاده میکنیم
+
+انواع Api تحت وب
+RPC,SOAP,REST
+
+تقسیم بندی سطح دسترسی 
+Open Apis,Partner Apis,Internal Apis
+
