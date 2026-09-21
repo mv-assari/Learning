@@ -1,0 +1,20 @@
+REST
+یک سبک معماری برای 
+Api
+نویسی هست
+
+این معماری یکسری بایدها ونبایدها ارائه میکنه که میتونیم 
+Api REST
+به مشتریهامون ارائه بدیم
+
+قوانین
+1-Client-Server
+2-StateLess
+3-Cacheable
+4-Layered System
+5-Code in Demand
+6-Uniform Interfaces
+	1-Identification
+	2-Manipulation
+	3-Self-Descriptive
+	4-HATEOAS
