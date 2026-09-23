@@ -1,0 +1,3 @@
+﻿ابتدا باید پکیج مورد نیاز نصب شود سپس ازآن استفاده کرد
+
+Microsoft.AspNetCore.Authentication.JwtBearer
