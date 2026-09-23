@@ -1,0 +1,14 @@
+﻿برای انجام ورژن بندی در برنامه خود باید پکیج زیر نصب شود
+microsoft.aspnetcore.mvc.versioning
+
+حالا باید اونو در استارتاپ در قسمت کانفیگور سرویس نصب کنیم
+services.AddApiVersioning();
+
+اگر بعد از نوشتن چند سرویس، ورژنینگ رو ایجاد کنیم باید به صورت زیر عمل کنیم
+services.AddApiVersioning(op =>
+            {
+                op.AssumeDefaultVersionWhenUnspecified = true;
+                op.DefaultApiVersion = new ApiVersion(1, 0);
+                op.ReportApiVersions= true;
+
+            });
