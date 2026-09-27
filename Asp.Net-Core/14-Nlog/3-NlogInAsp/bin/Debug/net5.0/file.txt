@@ -1,0 +1,6 @@
+2026-09-27 22:42:36.8029|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2026-09-27 22:42:36.8392|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development
+2026-09-27 22:42:36.8494|INFO|Microsoft.Hosting.Lifetime|Content root path: F:\Learning\Learning\Asp.Net-Core\14-Nlog\3-NlogInAsp
+2026-09-27 22:42:37.0225|DEBUG|LoggingInAspNetCore.Controllers.HomeController|a=5 and b=6
+2026-09-27 22:42:37.0225|DEBUG|LoggingInAspNetCore.Controllers.HomeController|c=a+b ==> 11
+2026-09-27 22:42:37.0225|INFO|LoggingInAspNetCore.Controllers.HomeController|sum method run
