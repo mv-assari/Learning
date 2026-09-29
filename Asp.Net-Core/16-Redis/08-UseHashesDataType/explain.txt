@@ -1,0 +1,80 @@
+کار با نوع داده ای 
+hashes
+
+
+C:\Users\Home\Desktop\redis>redis-cli.exe
+127.0.0.1:6379> hset product name iphone
+(integer) 1
+127.0.0.1:6379> hget product name
+"iphone"
+127.0.0.1:6379> hmset product price 56000 color red
+OK
+127.0.0.1:6379> hmget product name price color
+1) "iphone"
+2) "56000"
+3) "red"
+127.0.0.1:6379> hset product:1 name asus
+(integer) 1
+127.0.0.1:6379> hget product:1 name
+"asus"
+127.0.0.1:6379> hmset product:2 name "iphone se" color gold price 175000 size 5
+OK
+127.0.0.1:6379> hget product:2
+(error) ERR wrong number of arguments for 'hget' command
+127.0.0.1:6379> hmget product:2
+(error) ERR wrong number of arguments for 'hmget' command
+127.0.0.1:6379> hmget product:2 name color price size
+1) "iphone se"
+2) "gold"
+3) "175000"
+4) "5"
+127.0.0.1:6379> hexists product:2 name
+(integer) 1
+127.0.0.1:6379> hexists product:2 ali
+(integer) 0
+127.0.0.1:6379> hexists product:1 size
+(integer) 0
+127.0.0.1:6379> hgetall product:2
+1) "name"
+2) "iphone se"
+3) "color"
+4) "gold"
+5) "price"
+6) "175000"
+7) "size"
+8) "5"
+127.0.0.1:6379> hdel product:2 size
+(integer) 1
+127.0.0.1:6379> hgetall product:2
+1) "name"
+2) "iphone se"
+3) "color"
+4) "gold"
+5) "price"
+6) "175000"
+127.0.0.1:6379> hvals product:2
+1) "iphone se"
+2) "gold"
+3) "175000"
+127.0.0.1:6379> hkeys product:2
+1) "name"
+2) "color"
+3) "price"
+127.0.0.1:6379> hlen product:2
+(integer) 3
+127.0.0.1:6379> hlen product:1
+(integer) 1
+127.0.0.1:6379> hlen product
+(integer) 3
+127.0.0.1:6379> hvals product
+1) "iphone"
+2) "56000"
+3) "red"
+127.0.0.1:6379> hgetall product
+1) "name"
+2) "iphone"
+3) "price"
+4) "56000"
+5) "color"
+6) "red"
+127.0.0.1:6379>
