@@ -1,0 +1,86 @@
+این همان سی ام دی هست 
+و کارهایی که میتوان با نوع داده ای استرینگ در ردیس انجام  داد البته برای شناسایی دستورات بیشتر به سایت ردیس مراجعه شود
+
+C:\Users\Home\Desktop\redis>redis-cli.exe
+127.0.0.1:6379> set key1 salam
+OK
+127.0.0.1:6379> set key2 salam vahid
+(error) ERR syntax error
+127.0.0.1:6379> set key2 "salam vahid"
+OK
+127.0.0.1:6379> get key1
+"salam"
+127.0.0.1:6379> get key2
+"salam vahid"
+127.0.0.1:6379> get key3
+(nil)
+127.0.0.1:6379> mset key3 vahid.net key4 asp.net
+OK
+127.0.0.1:6379> mget key3 key4
+1) "vahid.net"
+2) "asp.net"
+127.0.0.1:6379> get key1
+"salam"
+127.0.0.1:6379> set key1 Hi
+OK
+127.0.0.1:6379> get key1
+"Hi"
+127.0.0.1:6379> del key1
+(integer) 1
+127.0.0.1:6379> get key1
+(nil)
+127.0.0.1:6379> get key2
+"salam vahid"
+127.0.0.1:6379> get key3
+"vahid.net"
+127.0.0.1:6379> get key4
+"asp.net"
+127.0.0.1:6379> del key2
+(integer) 1
+127.0.0.1:6379> del key3
+(integer) 1
+127.0.0.1:6379> del key4
+(integer) 1
+127.0.0.1:6379> set site mva
+OK
+127.0.0.1:6379> get site
+"mva"
+127.0.0.1:6379> append site mva.net
+(integer) 10
+127.0.0.1:6379> get site
+"mvamva.net"
+127.0.0.1:6379> set productview 1
+OK
+127.0.0.1:6379> get productview
+"1"
+127.0.0.1:6379> incr productview
+(integer) 2
+127.0.0.1:6379> incr productview
+(integer) 3
+127.0.0.1:6379> incr productview
+(integer) 4
+127.0.0.1:6379> get productview
+"4"
+127.0.0.1:6379> decr prodcutview
+(integer) -1
+127.0.0.1:6379> decr prodcutview
+(integer) -2
+127.0.0.1:6379> decr prodcutview
+(integer) -3
+127.0.0.1:6379> get productview
+"4"
+127.0.0.1:6379> decr productview
+(integer) 3
+127.0.0.1:6379> decr productview
+(integer) 2
+127.0.0.1:6379> decr productview
+(integer) 1
+127.0.0.1:6379> get productview
+"1"
+127.0.0.1:6379> incrby prodcutview 100
+(integer) 97
+127.0.0.1:6379> incrby productview 100
+(integer) 101
+127.0.0.1:6379> decrby productview 50
+(integer) 51
+127.0.0.1:6379>
