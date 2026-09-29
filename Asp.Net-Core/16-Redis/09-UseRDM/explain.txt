@@ -1,0 +1,5 @@
+در این قسمت نرم افزار 
+Another.Redis.Desktop.Manager.1.5.9
+را دانلود و نصب کردیم که چیزی شبیه 
+sql server management 
+ماکروسافت هست برای ارتباط بهتر با ردیس
