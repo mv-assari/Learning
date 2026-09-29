@@ -1,0 +1,65 @@
+کار با نوع داده ای لیست در ردیس
+
+
+C:\Users\Home\Desktop\redis>redis-cli.exe
+127.0.0.1:6379> get prodcutview
+"97"
+127.0.0.1:6379> lpush colors "red"
+(integer) 1
+127.0.0.1:6379> lpush colors blue
+(integer) 2
+127.0.0.1:6379> rpush colors white
+(integer) 3
+127.0.0.1:6379> rpush colors black
+(integer) 4
+127.0.0.1:6379> llen colors
+(integer) 4
+127.0.0.1:6379> lrange 0 0
+(error) ERR wrong number of arguments for 'lrange' command
+127.0.0.1:6379> lrange colors  0 0
+1) "blue"
+127.0.0.1:6379> lrange colors  0 3
+1) "blue"
+2) "red"
+3) "white"
+4) "black"
+127.0.0.1:6379> lrange colors  0
+(error) ERR wrong number of arguments for 'lrange' command
+127.0.0.1:6379> lrange colors  0 -1
+1) "blue"
+2) "red"
+3) "white"
+4) "black"
+127.0.0.1:6379> lpup colors
+(error) ERR unknown command 'lpup'
+127.0.0.1:6379> lpop colors
+"blue"
+127.0.0.1:6379> lrange colors  0 -1
+1) "red"
+2) "white"
+3) "black"
+127.0.0.1:6379> rpop colors
+"black"
+127.0.0.1:6379> lrange colors  0 -1
+1) "red"
+2) "white"
+127.0.0.1:6379> lindex colors 1
+"white"
+127.0.0.1:6379> lindex colors 0
+"red"
+127.0.0.1:6379> lindex colors 2
+(nil)
+127.0.0.1:6379> linsert colors before "red" "white"
+(integer) 3
+127.0.0.1:6379> lrange colors  0 -1
+1) "white"
+2) "red"
+3) "white"
+127.0.0.1:6379> linsert colors after "white" "black"
+(integer) 4
+127.0.0.1:6379> lrange colors  0 -1
+1) "white"
+2) "black"
+3) "red"
+4) "white"
+127.0.0.1:6379>
