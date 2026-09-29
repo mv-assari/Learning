@@ -1,0 +1,50 @@
+کار برروی نوع داده ای 
+Sorted Sets
+
+
+
+C:\Users\Home\Desktop\redis>redis-cli.exe
+127.0.0.1:6379> zadd zlist 1 "mva"
+(integer) 1
+127.0.0.1:6379> zadd zlist 2 "vhid"
+(integer) 1
+127.0.0.1:6379> zadd zlist 3 "mohamad"
+(integer) 1
+127.0.0.1:6379> zcard zlist
+(integer) 3
+127.0.0.1:6379> zrange zlist
+(error) ERR wrong number of arguments for 'zrange' command
+127.0.0.1:6379> zrange zlist 0 -1
+1) "mva"
+2) "vhid"
+3) "mohamad"
+127.0.0.1:6379> zadd zlist 5 "fatemeh"
+(integer) 1
+127.0.0.1:6379> zadd zlist 4 "zeynab"
+(integer) 1
+127.0.0.1:6379> zrange zlist 0 -1
+1) "mva"
+2) "vhid"
+3) "mohamad"
+4) "zeynab"
+5) "fatemeh"
+127.0.0.1:6379> zadd zlist 4 "baba"
+(integer) 1
+127.0.0.1:6379> zrange zlist 0 -1
+1) "mva"
+2) "vhid"
+3) "mohamad"
+4) "baba"
+5) "zeynab"
+6) "fatemeh"
+127.0.0.1:6379> zrem zlist "mva"
+(integer) 1
+127.0.0.1:6379> zrange zlist 0 -1
+1) "vhid"
+2) "mohamad"
+3) "baba"
+4) "zeynab"
+5) "fatemeh"
+127.0.0.1:6379> zrank zlist "baba"
+(integer) 2
+127.0.0.1:6379>
