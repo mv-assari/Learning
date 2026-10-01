@@ -1,0 +1,21 @@
+برای این کار ابتدا باید ایمیج را دریافت کنیم
+docker pull mcr.microsoft.com/mssql/server
+
+برای ساخت کانتینر از دستور زیر استفاده میکنیم
+docker run -e 'ACCEPT_EULA=Y' -e '^SA_PASSWORD=12345678@' -p 1433:1433 -d mcr.microsoft.com/mssql/server
+
+برای ورود به محیط کانتینر و اجرای دستورات
+docker exec -it (Idcontainer) /opt/mssql-tools/bin/sqlcmd -s localhost -u sa -p 12345678@
+
+لیست دیتابیس ها موجود
+select name from sys.databases
+go
+و نام های دیتابیس ها رو برامون لیست میکنه
+
+برای ساخت دیتابیس و یک جدول نمونه
+Create database myDataBase
+go
+USE myDataBase
+go
+Create table Products (id int,name nvarchar(max))
+go
