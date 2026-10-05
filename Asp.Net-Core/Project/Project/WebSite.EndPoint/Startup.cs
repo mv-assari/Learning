@@ -33,6 +33,11 @@ namespace WebSite.EndPoint
             {
                 option.UseSqlServer(connection);
             });
+
+            services.AddDbContext<IdentityDataBaseContext>(option =>
+            {
+                option.UseSqlServer(connection);
+            });
             #endregion
 
 

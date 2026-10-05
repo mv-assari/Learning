@@ -11,8 +11,6 @@ namespace Application.Interfaces.Contexts
 {
     public interface IDataBaseContext
     {
-        public DbSet<User> Users { get; set; }
-
         public int SaveChanges();
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
