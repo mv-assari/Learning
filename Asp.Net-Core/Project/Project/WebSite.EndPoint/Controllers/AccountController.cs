@@ -2,21 +2,19 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebSite.EndPoint.Models.ViewModels.Register;
+using WebSite.EndPoint.Models.ViewModels.User;
 
 namespace WebSite.EndPoint.Controllers
 {
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public AccountController(UserManager<User> userManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
-        }
-
-        public IActionResult Login()
-        {
-            return View();
+            _signInManager = signInManager;
         }
 
         public IActionResult Register()
@@ -55,6 +53,55 @@ namespace WebSite.EndPoint.Controllers
         public IActionResult Profile()
         {
             return View();
+        }
+
+        public IActionResult Login(string returnUrl = "/")
+        {
+            return View(new LoginViewModel
+            {
+                ReturnUrl = returnUrl,
+            });
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = _userManager.FindByNameAsync(model.Email).Result;
+
+            if (user == null)
+            {
+                ModelState.AddModelError("", "کاربر یافت نشد");
+                return View(model);
+            }
+
+            _signInManager.SignOutAsync();
+            var result = _signInManager.PasswordSignInAsync(user, model.Password, model.IsPersistent, true).Result;
+
+
+            if (result.Succeeded)
+            {
+                return Redirect(model.ReturnUrl);
+            }
+
+            if(result.RequiresTwoFactor)
+            {
+                //
+            }
+
+            return View(model);
+
+        }
+
+
+        public IActionResult LogOut()
+        {
+            _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
