@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Persistence.Contexts;
 using Infrastructure.IdentityConfigs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebSite.EndPoint
+namespace Admin.EndPoint
 {
     public class Startup
     {
@@ -26,28 +24,9 @@ namespace WebSite.EndPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
-            #region ConnectionString
-            string connection = Configuration["ConnectionStrings:SqlServer"];
-            services.AddDbContext<DataBaseContext>(option =>
-            {
-                option.UseSqlServer(connection);
-            });
-
+            services.AddRazorPages();
             services.AddIdentityService(Configuration);
             services.AddAuthorization();
-            services.ConfigureApplicationCookie(option =>
-            {
-                option.ExpireTimeSpan = TimeSpan.FromMinutes(10);
-                option.LoginPath = "/account/login";
-                option.AccessDeniedPath = "/account/accessDenied";
-                option.SlidingExpiration = true;
-            });
-            #endregion
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,10 +38,11 @@ namespace WebSite.EndPoint
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -73,9 +53,7 @@ namespace WebSite.EndPoint
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }
