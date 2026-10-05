@@ -1,3 +1,4 @@
+using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
 using Infrastructure.IdentityConfigs;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Persistence.Contexts.MongoContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +31,8 @@ namespace Admin.EndPoint
             services.AddIdentityService(Configuration);
             services.AddAuthorization();
 
-            services.AddTransient<IGetTodayReportService, GetTodayReportService>();
+            services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
+            services.AddScoped<IGetTodayReportService, GetTodayReportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

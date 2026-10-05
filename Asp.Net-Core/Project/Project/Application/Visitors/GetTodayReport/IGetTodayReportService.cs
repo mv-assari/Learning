@@ -43,26 +43,38 @@ namespace Application.Visitors.GetTodayReport
 
             return new ResultTodayReportDto
             {
-                generalState = new GeneralStateDto
+                GeneralStats = new GeneralStateDto
                 {
                     TotalVisitors = allVisitorCount,
                     TotalPageViews = allPageViewCount,
-                    PageViewPerVisit = allPageViewCount / allVisitorCount
+                    PageViewsPerVisit =GetAvg(allPageViewCount, allVisitorCount)
                 },
                 Today=new TodayDto
                 {
                     PageViews=todayPageViewCount,
                     Visitors=todayVisitorCount,
-                    ViewPerVisitor= todayPageViewCount / todayVisitorCount
+                    ViewsPerVisitor=GetAvg( todayPageViewCount , todayVisitorCount)
                 }
             };
 
+        }
+
+        private float GetAvg(long VisitPage,long Visitor)
+        {
+            if (Visitor==0)
+            {
+                return 0;
+            }
+            else
+            {
+                return VisitPage / Visitor;
+            }
         }
     }
 
     public class ResultTodayReportDto
     {
-        public GeneralStateDto generalState {  get; set; }
+        public GeneralStateDto GeneralStats {  get; set; }
         public TodayDto Today { get; set; }
 
     }
@@ -71,13 +83,13 @@ namespace Application.Visitors.GetTodayReport
     {
         public long PageViews { get; set; }
         public long Visitors { get; set; }
-        public float ViewPerVisitor { get; set; }
+        public float ViewsPerVisitor { get; set; }
     }
 
     public class GeneralStateDto
     {
         public long TotalPageViews { get; set; }
         public long TotalVisitors { get; set; }
-        public float PageViewPerVisit { get; set; }
+        public float PageViewsPerVisit { get; set; }
     }
 }
