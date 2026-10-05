@@ -1,10 +1,11 @@
+using Application.Visitors.GetTodayReport;
+using Infrastructure.IdentityConfigs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Infrastructure.IdentityConfigs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace Admin.EndPoint
             services.AddRazorPages();
             services.AddIdentityService(Configuration);
             services.AddAuthorization();
+
+            services.AddTransient<IGetTodayReportService, GetTodayReportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
