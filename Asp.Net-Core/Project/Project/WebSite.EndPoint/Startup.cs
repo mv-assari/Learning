@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Interfaces.Contexts;
+using Persistence.Contexts.MongoContext;
+using Application.Visitors.SaveVisitorInfo;
 
 namespace WebSite.EndPoint
 {
@@ -46,7 +49,8 @@ namespace WebSite.EndPoint
             });
             #endregion
 
-
+            services.AddTransient(typeof(IMongoDbContext<>),typeof(MongoDbContext<>));
+            services.AddTransient<ISaveVisitorInfoService,SaveVisitorInfoService>();
 
         }
 
