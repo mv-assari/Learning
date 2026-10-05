@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Application.Interfaces.Contexts;
 using Persistence.Contexts.MongoContext;
 using Application.Visitors.SaveVisitorInfo;
+using WebSite.EndPoint.Utilities.Filters;
 
 namespace WebSite.EndPoint
 {
@@ -51,6 +52,7 @@ namespace WebSite.EndPoint
 
             services.AddTransient(typeof(IMongoDbContext<>),typeof(MongoDbContext<>));
             services.AddTransient<ISaveVisitorInfoService,SaveVisitorInfoService>();
+            services.AddScoped<SaveVisitorFilter>();
 
         }
 
