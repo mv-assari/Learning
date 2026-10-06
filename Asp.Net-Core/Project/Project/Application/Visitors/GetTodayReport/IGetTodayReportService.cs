@@ -36,31 +36,79 @@ namespace Application.Visitors.GetTodayReport
 
             var todayVisitorCount = VisitorMongoCollection.AsQueryable()
                 .Where(p => p.Time >= start && p.Time < end)
-                .GroupBy(p=>p.VisitorId).LongCount();
+                .GroupBy(p => p.VisitorId).LongCount();
 
             var allPageViewCount = VisitorMongoCollection.AsQueryable().LongCount();
-            var allVisitorCount = VisitorMongoCollection.AsQueryable().GroupBy(p=>p.VisitorId).LongCount();
+            var allVisitorCount = VisitorMongoCollection.AsQueryable().GroupBy(p => p.VisitorId).LongCount();
 
-            var todayPageViewList = VisitorMongoCollection.AsQueryable()
-                .Where(p => p.Time >= start && p.Time < end)
-                .Select(p => new
+            VisitCountDto visitPerHour = GetVisitPerHour(start, end);
+
+            VisitCountDto visitPerDay = GetVisitPerDay();
+
+            var visitors = VisitorMongoCollection.AsQueryable()
+                .OrderByDescending(p => p.Time)
+                .Take(10)
+                .Select(p => new VisitorsDto
                 {
-                    p.Time
+                    Id = p.Id,
+                    Browser=p.Browser.Family,
+                    CurrentLink=p.CurrentLink,
+                    Ip=p.Ip,
+                    OperationSystem=p.OperationSystem.Family,
+                    IsSpider=p.Device.IsSpider,
+                    ReferrerLink=p.ReferrerLink,
+                    Time=p.Time,
+                    VisitorId=p.VisitorId
                 }).ToList();
+
+            return new ResultTodayReportDto
+            {
+                GeneralStats = new GeneralStateDto
+                {
+                    TotalVisitors = allVisitorCount,
+                    TotalPageViews = allPageViewCount,
+                    PageViewsPerVisit = GetAvg(allPageViewCount, allVisitorCount),
+                    VisitPerDay = visitPerDay
+                },
+                Today = new TodayDto
+                {
+                    PageViews = todayPageViewCount,
+                    Visitors = todayVisitorCount,
+                    ViewsPerVisitor = GetAvg(todayPageViewCount, todayVisitorCount),
+                    VisitPerhour = visitPerHour
+                },
+                Visitors=visitors
+            };
+
+        }
+
+        private VisitCountDto GetVisitPerHour(DateTime start, DateTime end)
+        {
+            var todayPageViewList = VisitorMongoCollection.AsQueryable()
+                            .Where(p => p.Time >= start && p.Time < end)
+                            .Select(p => new
+                            {
+                                p.Time
+                            }).ToList();
 
 
             VisitCountDto visitPerHour = new VisitCountDto
             {
                 Display = new string[24],
-                Value=new int[24]
+                Value = new int[24]
             };
 
-            for (int i = 0;i<=23;i++)
+            for (int i = 0; i <= 23; i++)
             {
                 visitPerHour.Display[i] = $"H-{i}";
                 visitPerHour.Value[i] = todayPageViewList.Where(p => p.Time.Hour == i).Count();
             }
 
+            return visitPerHour;
+        }
+
+        private VisitCountDto GetVisitPerDay()
+        {
             DateTime monthStart = DateTime.Now.Date.AddDays(-30);
             DateTime monthEnd = DateTime.Now.Date.AddDays(1);
 
@@ -74,31 +122,14 @@ namespace Application.Visitors.GetTodayReport
                 Value = new int[31]
             };
 
-            for (int i=0;i<=30 ; i++)
+            for (int i = 0; i <= 30; i++)
             {
                 var currentDay = DateTime.Now.AddDays(i * (-1));
                 visitPerDay.Display[i] = i.ToString();
-                visitPerDay.Value[i]=month_PageViewList.Where(p=>p.Time.Date==currentDay.Date).Count();
+                visitPerDay.Value[i] = month_PageViewList.Where(p => p.Time.Date == currentDay.Date).Count();
             }
 
-            return new ResultTodayReportDto
-            {
-                GeneralStats = new GeneralStateDto
-                {
-                    TotalVisitors = allVisitorCount,
-                    TotalPageViews = allPageViewCount,
-                    PageViewsPerVisit =GetAvg(allPageViewCount, allVisitorCount),
-                    VisitPerDay = visitPerDay
-                },
-                Today=new TodayDto
-                {
-                    PageViews=todayPageViewCount,
-                    Visitors=todayVisitorCount,
-                    ViewsPerVisitor=GetAvg( todayPageViewCount , todayVisitorCount),
-                    VisitPerhour=visitPerHour
-                }
-            };
-
+            return visitPerDay;
         }
 
         private float GetAvg(long VisitPage,long Visitor)
@@ -118,6 +149,7 @@ namespace Application.Visitors.GetTodayReport
     {
         public GeneralStateDto GeneralStats {  get; set; }
         public TodayDto Today { get; set; }
+        public List<VisitorsDto> Visitors { get; set; }
 
     }
 
@@ -141,5 +173,18 @@ namespace Application.Visitors.GetTodayReport
     {
         public string[] Display { get; set; }
         public int[] Value { get; set; }
+    }
+
+    public class VisitorsDto
+    {
+        public string Id { get; set; }
+        public string Ip { get; set; }
+        public string CurrentLink { get; set; }
+        public string ReferrerLink { get; set; }
+        public string Browser { get; set; }
+        public string OperationSystem { get; set; }
+        public bool IsSpider { get; set; }
+        public DateTime Time { get; set; }
+        public string VisitorId { get; set; }
     }
 }
