@@ -31,16 +31,16 @@ namespace WebSite.EndPoint.Utilities.Filters
             var currentUrl = context.HttpContext.Request.Path;
             var request=context.HttpContext.Request;
             string visitoryId = context.HttpContext.Request.Cookies["VisitorId"];
-            if (visitoryId==null)
-            {
-                visitoryId=Guid.NewGuid().ToString();
-                context.HttpContext.Response.Cookies.Append("VisitorId", visitoryId, new CookieOptions
-                {
-                    Path = "/",
-                    HttpOnly = true,
-                    Expires = DateTime.Now.AddDays(30)
-                });
-            }
+            //if (visitoryId==null)
+            //{
+            //    visitoryId=Guid.NewGuid().ToString();
+            //    context.HttpContext.Response.Cookies.Append("VisitorId", visitoryId, new CookieOptions
+            //    {
+            //        Path = "/",
+            //        HttpOnly = true,
+            //        Expires = DateTime.Now.AddDays(30)
+            //    });
+            //}
             _saveVisitorInfoService.Execute(new RequestSaveVisitorInfoDto
             {
                 Browser = new VisitorVersionDto

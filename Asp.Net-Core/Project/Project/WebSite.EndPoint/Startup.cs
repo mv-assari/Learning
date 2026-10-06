@@ -1,3 +1,7 @@
+using Application.Interfaces.Contexts;
+using Application.Visitors.SaveVisitorInfo;
+using Application.Visitors.VisitorOnline;
+using Infrastructure.IdentityConfigs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,15 +10,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
-using Infrastructure.IdentityConfigs;
+using Persistence.Contexts.MongoContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Application.Interfaces.Contexts;
-using Persistence.Contexts.MongoContext;
-using Application.Visitors.SaveVisitorInfo;
+using WebSite.EndPoint.Hubs;
 using WebSite.EndPoint.Utilities.Filters;
+using WebSite.EndPoint.Utilities.Middlewares;
 
 namespace WebSite.EndPoint
 {
@@ -53,6 +56,9 @@ namespace WebSite.EndPoint
             services.AddTransient(typeof(IMongoDbContext<>),typeof(MongoDbContext<>));
             services.AddTransient<ISaveVisitorInfoService,SaveVisitorInfoService>();
             services.AddScoped<SaveVisitorFilter>();
+            services.AddTransient<IVisitorOnlineService,VisitorOnlineService>();
+
+            services.AddSignalR();
 
         }
 
@@ -69,6 +75,7 @@ namespace WebSite.EndPoint
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseSetVisitorId();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -82,6 +89,8 @@ namespace WebSite.EndPoint
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<OnlineVisitorHub>("/chathub");
             });
         }
     }
