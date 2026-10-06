@@ -235,7 +235,7 @@
     <script src="~/Theme/assets/js/scrollspyNav.js"></script>
     <script src="~/Theme/assets/js/dashboard/dash_1.js"></script>
     <script src="~/Theme/plugins/apex/apexcharts.min.js"></script>
-    @* <script>
+    <script>
 
         var DisplayHour=@Html.Raw(Json.Serialize(Model.ResultTodayReport.Today.VisitPerhour.Display));
         var ValueHour=@Html.Raw(Json.Serialize(Model.ResultTodayReport.Today.VisitPerhour.Value));
@@ -273,7 +273,7 @@
                     },
                 },
                 xaxis: {
-                    categories: DisplayHour, ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر'],
+                    categories: DisplayHour,// ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر'],
                 },
                 yaxis: {
                     labels: {
@@ -289,8 +289,8 @@
 
             ///----------
 
-        // var DisplayDay=@Html.Raw(Json.Serialize(Model.ResultTodayReport.GeneralStats.VisitPerDay.Display));
-        // var ValueDay=@Html.Raw(Json.Serialize(Model.ResultTodayReport.GeneralStats.VisitPerDay.Value));
+        var DisplayDay=@Html.Raw(Json.Serialize(Model.ResultTodayReport.GeneralStats.VisitPerDay.Display));
+        var ValueDay=@Html.Raw(Json.Serialize(Model.ResultTodayReport.GeneralStats.VisitPerDay.Value));
 
             var slineDay = {
                 chart: {
@@ -338,5 +338,5 @@
                 slineDay
             );
             chartDay.render();
-    </script> *@
+    </script>
 }
