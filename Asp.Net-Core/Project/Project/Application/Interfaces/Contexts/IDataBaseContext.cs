@@ -1,4 +1,5 @@
-﻿using Domain.Users;
+﻿using Domain.Catalogs;
+using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ namespace Application.Interfaces.Contexts
 {
     public interface IDataBaseContext
     {
+        DbSet<CatalogBrand> CatalogBrands { get; set; }
+        DbSet<CatalogType> CatalogTypes { get; set; }
         public int SaveChanges();
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);

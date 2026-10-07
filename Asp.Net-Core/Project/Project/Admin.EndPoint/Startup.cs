@@ -1,12 +1,17 @@
+using Admin.EndPoint.MappingProfiles;
+using Application.Catalogs.CatalogTypes;
 using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
 using Infrastructure.IdentityConfigs;
+using Infrastructure.MappingProfile;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Persistence.Contexts;
 using Persistence.Contexts.MongoContext;
 using System;
 using System.Collections.Generic;
@@ -31,8 +36,21 @@ namespace Admin.EndPoint
             services.AddIdentityService(Configuration);
             services.AddAuthorization();
 
+            services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
             services.AddScoped<IGetTodayReportService, GetTodayReportService>();
+            services.AddTransient<ICatalogTypeService, CatalogTypeService>();
+
+            string connection = Configuration["ConnectionStrings:SqlServer"];
+            services.AddDbContext<DataBaseContext>(option =>
+            {
+                option.UseSqlServer(connection);
+            });
+
+            //mapper
+            services.AddAutoMapper(typeof(CatalogMappingProfile));
+            services.AddAutoMapper(typeof(CatalogVMMappingProfile));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -36,6 +36,7 @@ namespace WebSite.EndPoint
             services.AddControllersWithViews();
 
             #region ConnectionString
+            services.AddScoped<IDataBaseContext, DataBaseContext>();
             string connection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<DataBaseContext>(option =>
             {
