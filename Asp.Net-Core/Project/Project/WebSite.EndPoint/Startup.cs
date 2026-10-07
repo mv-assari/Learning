@@ -1,7 +1,9 @@
+using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
 using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfigs;
+using Infrastructure.MappingProfile;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -58,9 +60,13 @@ namespace WebSite.EndPoint
             services.AddTransient<ISaveVisitorInfoService,SaveVisitorInfoService>();
             services.AddScoped<SaveVisitorFilter>();
             services.AddTransient<IVisitorOnlineService,VisitorOnlineService>();
+            services.AddTransient<IGetMenuItemService,GetMenuItemService>();
 
             services.AddSignalR();
 
+
+            //mapper
+            services.AddAutoMapper(typeof(CatalogMappingProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
