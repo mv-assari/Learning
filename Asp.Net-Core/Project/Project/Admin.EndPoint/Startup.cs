@@ -1,7 +1,11 @@
 using Admin.EndPoint.MappingProfiles;
+using Application.Catalogs.CatalogItems.AddNewCatalogItem;
+using Application.Catalogs.CatalogItems.CatalogItemService;
 using Application.Catalogs.CatalogTypes;
 using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
+using FluentValidation;
+using Infrastructure.ExternalApi.ImageServer;
 using Infrastructure.IdentityConfigs;
 using Infrastructure.MappingProfile;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +44,9 @@ namespace Admin.EndPoint
             services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
             services.AddScoped<IGetTodayReportService, GetTodayReportService>();
             services.AddTransient<ICatalogTypeService, CatalogTypeService>();
+            services.AddTransient<IAddNewCatalogItemService, AddNewCatalogItemService>();
+            services.AddTransient<ICatalogItemService, CatalogItemService>();
+            services.AddTransient<IImageUploadService,ImageUploadService>();
 
             string connection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<DataBaseContext>(option =>
@@ -50,6 +57,9 @@ namespace Admin.EndPoint
             //mapper
             services.AddAutoMapper(typeof(CatalogMappingProfile));
             services.AddAutoMapper(typeof(CatalogVMMappingProfile));
+
+            //fluentValidation
+            services.AddTransient<IValidator<AddNewCatalogItemDto>, AddNewCatalogItemDtoValidator>();
 
         }
 

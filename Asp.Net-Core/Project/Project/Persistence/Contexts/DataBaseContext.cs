@@ -20,6 +20,7 @@ namespace Persistence.Contexts
 
         public DbSet<CatalogBrand> CatalogBrands { get; set; }
         public DbSet<CatalogType> CatalogTypes { get; set; }
+        public DbSet<CatalogItem> catalogItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

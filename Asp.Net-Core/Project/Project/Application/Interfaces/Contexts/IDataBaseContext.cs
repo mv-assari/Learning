@@ -14,6 +14,7 @@ namespace Application.Interfaces.Contexts
     {
         DbSet<CatalogBrand> CatalogBrands { get; set; }
         DbSet<CatalogType> CatalogTypes { get; set; }
+        DbSet<CatalogItem> catalogItems { get; set; }
         public int SaveChanges();
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
