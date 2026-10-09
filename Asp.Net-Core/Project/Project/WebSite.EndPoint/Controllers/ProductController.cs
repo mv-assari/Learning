@@ -1,4 +1,5 @@
-﻿using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
+﻿using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
+using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebSite.EndPoint.Controllers

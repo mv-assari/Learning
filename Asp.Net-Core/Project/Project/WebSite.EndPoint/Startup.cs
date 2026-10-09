@@ -1,3 +1,4 @@
+using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
@@ -65,6 +66,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IGetMenuItemService,GetMenuItemService>();
             services.AddTransient<IGetCatalogItemPLPService,GetCatalogIItemPLPService>();
             services.AddTransient<IUriComposerService,UriComposerService>();
+            services.AddTransient<IGetCatalogItemPDPService, GetCatalogItemPDPService>();
 
             services.AddSignalR();
 
