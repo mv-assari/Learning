@@ -1,3 +1,5 @@
+using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
+using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
 using Application.Visitors.SaveVisitorInfo;
@@ -61,6 +63,8 @@ namespace WebSite.EndPoint
             services.AddScoped<SaveVisitorFilter>();
             services.AddTransient<IVisitorOnlineService,VisitorOnlineService>();
             services.AddTransient<IGetMenuItemService,GetMenuItemService>();
+            services.AddTransient<IGetCatalogItemPLPService,GetCatalogIItemPLPService>();
+            services.AddTransient<IUriComposerService,UriComposerService>();
 
             services.AddSignalR();
 
