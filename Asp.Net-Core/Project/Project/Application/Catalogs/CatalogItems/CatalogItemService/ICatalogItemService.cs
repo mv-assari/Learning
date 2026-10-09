@@ -1,5 +1,7 @@
-﻿using Application.Interfaces.Contexts;
+﻿using Application.Dtos;
+using Application.Interfaces.Contexts;
 using AutoMapper;
+using Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace Application.Catalogs.CatalogItems.CatalogItemService
     {
         List<CatalogBrandDto> GetBrand();
         List<ListCatalogTypeDto> GetCatalogType();
+        PaginatedItemsDto<CatalogItemListItemDto> GetCatalogList(int page, int pageSize);
     }
 
     public class CatalogItemService : ICatalogItemService
@@ -31,6 +34,29 @@ namespace Application.Catalogs.CatalogItems.CatalogItemService
             var brand = context.CatalogBrands.OrderBy(p => p.Brand).Take(500).ToList();
             var data=mapper.Map<List<CatalogBrandDto>>(brand);
             return data;
+        }
+
+        public PaginatedItemsDto<CatalogItemListItemDto> GetCatalogList(int page, int pageSize)
+        {
+            int rowCount = 0;
+            var data = context.catalogItems
+                .Include(p => p.CatalogType)
+                .Include(p => p.CatalogBrand)
+                .ToPaged(page, pageSize, out rowCount)
+                .OrderByDescending(p => p.Id)
+                .Select(p => new CatalogItemListItemDto
+                {
+                    Id = p.Id,
+                    Brand = p.CatalogBrand.Brand,
+                    Type = p.CatalogType.Type,
+                    AvailableStock = p.AvailableStock,
+                    MaxStockThreshold = p.MaxStockThreshold,
+                    RestockThreshold = p.RestockThreshold,
+                    Name = p.Name,
+                    Price = p.Price,
+                }).ToList();
+
+            return new PaginatedItemsDto<CatalogItemListItemDto>(page, page, rowCount, data);
         }
 
         public List<ListCatalogTypeDto> GetCatalogType()
