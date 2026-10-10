@@ -21,16 +21,43 @@ namespace WebSite.EndPoint.Controllers
             this.signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            return View();
+            var data = GetOrSetBasket();
+            return View(data);
+        }
+
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult Index(int CatalogitemId, int quantity = 1)
+        {
+            var basket = GetOrSetBasket();
+            basketService.AddItemToBasket(basket.Id, CatalogitemId, quantity);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult RemoveItemFromBasket(int ItemId)
+        {
+            basketService.RemoveItemFromBasket(ItemId);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult setQuantity(int basketItemId, int quantity)
+        {
+            return Json(basketService.SetQuantities(basketItemId, quantity));
         }
 
         private BasketDto GetOrSetBasket()
         {
             if (signInManager.IsSignedIn(User))
             {
-                userId = ClaimUtility.GetUserId(User);
+               // userId = ClaimUtility.GetUserId(User);
                 return basketService.GetOrCreateBasketForUser(userId);
             }
             else
