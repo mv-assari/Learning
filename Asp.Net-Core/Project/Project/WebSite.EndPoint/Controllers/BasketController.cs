@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using WebSite.EndPoint.Utilities;
 
 namespace WebSite.EndPoint.Controllers
 {
@@ -57,7 +58,7 @@ namespace WebSite.EndPoint.Controllers
         {
             if (signInManager.IsSignedIn(User))
             {
-               // userId = ClaimUtility.GetUserId(User);
+                userId = ClaimUtility.GetUserId(User);
                 return basketService.GetOrCreateBasketForUser(userId);
             }
             else
