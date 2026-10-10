@@ -16,6 +16,7 @@ namespace Application.BasketsService
         void AddItemToBasket(int basketId, int catalogItemId, int quantity = 1);
         bool RemoveItemFromBasket(int ItemId);
         bool SetQuantities(int itemId, int quantity);
+        BasketDto GetBasketForUser(string UserId);
     }
 
     public class BasketService : IBasketService
@@ -39,6 +40,35 @@ namespace Application.BasketsService
             basket.AddItem(catalogItemId, quantity, catalog.Price);
 
             context.SaveChanges();
+        }
+
+        public BasketDto GetBasketForUser(string UserId)
+        {
+            var basket = context.Baskets
+              .Include(p => p.Items)
+              .ThenInclude(p => p.CatalogItem)
+              .ThenInclude(p => p.CatalogItemImages)
+              .SingleOrDefault(p => p.BuyerId == UserId);
+            if (basket == null)
+            {
+                return null;
+            }
+            return new BasketDto
+            {
+                Id = basket.Id,
+                BuyerId = basket.BuyerId,
+                Items = basket.Items.Select(item => new BasketItemDto
+                {
+                    CatalogItemid = item.CatalogItemId,
+                    Id = item.Id,
+                    CatalogName = item.CatalogItem.Name,
+                    Quantity = item.Quantity,
+                    UnitPrice = item.UnitPrice,
+                    ImageUrl = uriComposerService.ComposeImageUri(item?.CatalogItem?
+                     .CatalogItemImages?.FirstOrDefault()?.Src ?? ""),
+
+                }).ToList(),
+            };
         }
 
         public BasketDto GetOrCreateBasketForUser(string buyerId)
