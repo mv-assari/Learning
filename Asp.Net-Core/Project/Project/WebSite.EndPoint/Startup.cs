@@ -4,6 +4,7 @@ using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
+using Application.Users;
 using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfigs;
@@ -69,6 +70,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IUriComposerService,UriComposerService>();
             services.AddTransient<IGetCatalogItemPDPService, GetCatalogItemPDPService>();
             services.AddTransient<IBasketService, BasketService>();
+            services.AddTransient<IUserAddressService,UserAddressService>();
 
 
             services.AddSignalR();
@@ -76,6 +78,7 @@ namespace WebSite.EndPoint
 
             //mapper
             services.AddAutoMapper(typeof(CatalogMappingProfile));
+            services.AddAutoMapper(typeof(UserMappingProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,6 +105,10 @@ namespace WebSite.EndPoint
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
