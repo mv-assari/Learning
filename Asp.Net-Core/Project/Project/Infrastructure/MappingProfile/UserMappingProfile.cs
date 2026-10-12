@@ -1,6 +1,7 @@
 ﻿
 using Application.Users;
 using AutoMapper;
+using Domain.Orders;
 using Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Infrastructure.MappingProfile
         {
             CreateMap<UserAddress, UserAddressDto>();
             CreateMap<AddUserAddressDto, UserAddress>();
-            //CreateMap<UserAddress, Address>();
+            CreateMap<UserAddress, Address>();
         }
     }
 }

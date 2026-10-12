@@ -4,6 +4,7 @@ using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
+using Application.Orders;
 using Application.Users;
 using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
@@ -71,6 +72,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IGetCatalogItemPDPService, GetCatalogItemPDPService>();
             services.AddTransient<IBasketService, BasketService>();
             services.AddTransient<IUserAddressService,UserAddressService>();
+            services.AddTransient<IOrderService,OrderService>();
 
 
             services.AddSignalR();
