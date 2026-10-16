@@ -2,6 +2,7 @@ using Admin.EndPoint.MappingProfiles;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
 using Application.Catalogs.CatalogItems.CatalogItemService;
 using Application.Catalogs.CatalogTypes;
+using Application.Discounts;
 using Application.Discounts.AddNewDiscountServices;
 using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
@@ -38,6 +39,7 @@ namespace Admin.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
             services.AddIdentityService(Configuration);
             services.AddAuthorization();
 
@@ -49,6 +51,7 @@ namespace Admin.EndPoint
             services.AddTransient<ICatalogItemService, CatalogItemService>();
             services.AddTransient<IImageUploadService,ImageUploadService>();
             services.AddTransient<IAddNewDiscountService, AddNewDiscountService>();
+            services.AddTransient<IDiscountService, DiscountService>();
 
             string connection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<DataBaseContext>(option =>
@@ -90,6 +93,7 @@ namespace Admin.EndPoint
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }
