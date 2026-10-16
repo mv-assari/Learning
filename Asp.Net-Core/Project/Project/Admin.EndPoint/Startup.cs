@@ -2,6 +2,7 @@ using Admin.EndPoint.MappingProfiles;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
 using Application.Catalogs.CatalogItems.CatalogItemService;
 using Application.Catalogs.CatalogTypes;
+using Application.Discounts.AddNewDiscountServices;
 using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
 using FluentValidation;
@@ -47,6 +48,7 @@ namespace Admin.EndPoint
             services.AddTransient<IAddNewCatalogItemService, AddNewCatalogItemService>();
             services.AddTransient<ICatalogItemService, CatalogItemService>();
             services.AddTransient<IImageUploadService,ImageUploadService>();
+            services.AddTransient<IAddNewDiscountService, AddNewDiscountService>();
 
             string connection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<DataBaseContext>(option =>
