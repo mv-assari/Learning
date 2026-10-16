@@ -1,10 +1,14 @@
 ﻿using Application.BasketsService;
+using Application.Orders;
+using Application.Users;
+using Domain.Orders;
 using Domain.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using WebSite.EndPoint.Models.ViewModels.Basket;
 using WebSite.EndPoint.Utilities;
 
 namespace WebSite.EndPoint.Controllers
@@ -15,11 +19,15 @@ namespace WebSite.EndPoint.Controllers
         private readonly IBasketService basketService;
         private readonly SignInManager<User> signInManager;
         private string userId = null;
+        private readonly IUserAddressService userAddressService;
+        private readonly IOrderService orderService;
 
-        public BasketController(IBasketService basketService, SignInManager<User> signInManager)
+        public BasketController(IBasketService basketService, SignInManager<User> signInManager, IUserAddressService userAddressService, IOrderService orderService)
         {
             this.basketService = basketService;
             this.signInManager = signInManager;
+            this.userAddressService = userAddressService;
+            this.orderService = orderService;
         }
 
         [AllowAnonymous]
@@ -52,6 +60,33 @@ namespace WebSite.EndPoint.Controllers
         public IActionResult setQuantity(int basketItemId, int quantity)
         {
             return Json(basketService.SetQuantities(basketItemId, quantity));
+        }
+
+        public IActionResult ShippingPayment()
+        {
+            ShippingPaymentViewModel model = new ShippingPaymentViewModel();
+            string userId = ClaimUtility.GetUserId(User);
+            model.Basket=basketService.GetBasketForUser(userId);
+            model.UserAddresses=userAddressService.GetAddress(userId);
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult ShippingPayment(int Address,PaymentMethod PaymentMethod)
+        {
+            string userId = ClaimUtility.GetUserId(User);
+            var basket = basketService.GetBasketForUser(userId);
+            int orderId=orderService.CreateOrder(basket.Id,Address,PaymentMethod);
+            if (PaymentMethod==PaymentMethod.OnlinePayment)
+            {
+                //ثبت پرداخت
+                //ارسال به درگاه پرداخت
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Order", new { area = "Customers" });
+            }
         }
 
         private BasketDto GetOrSetBasket()
