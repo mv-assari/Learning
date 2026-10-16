@@ -1,4 +1,5 @@
 ﻿using Domain.Attributes;
+using Domain.Discounts;
 using System.Collections.Generic;
 
 namespace Domain.Catalogs
@@ -19,5 +20,6 @@ namespace Domain.Catalogs
         public int MaxStockThreshold { get; set; }
         public ICollection<CatalogItemFeature> CatalogItemFeatures { get; set; }
         public ICollection<CatalogItemImage> CatalogItemImages { get; set; }
+        public ICollection<Discount> Discounts { get; set; }
     }
 }
