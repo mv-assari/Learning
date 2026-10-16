@@ -35,7 +35,27 @@ namespace Domain.Orders
         {
             return _orderItems.Sum(p => p.UnitPrice * p.Units);
         }
-        
+
+        public void PaymentDone()
+        {
+            PaymentStatus = PaymentStatus.Paid;
+        }
+
+        public void OrderDelivered()
+        {
+            OrderStatus = OrderStatus.Delivered;
+        }
+
+        public void OrderReturned()
+        {
+            OrderStatus = OrderStatus.Returned;
+        }
+
+        public void OrderCancelled()
+        {
+            OrderStatus = OrderStatus.Cancelled;
+        }
+
     }
 
     [Auditable]

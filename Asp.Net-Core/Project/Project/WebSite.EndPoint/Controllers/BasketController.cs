@@ -93,6 +93,11 @@ namespace WebSite.EndPoint.Controllers
             }
         }
 
+        public IActionResult CheckOut()
+        {
+            return View();
+        }
+
         private BasketDto GetOrSetBasket()
         {
             if (signInManager.IsSignedIn(User))
