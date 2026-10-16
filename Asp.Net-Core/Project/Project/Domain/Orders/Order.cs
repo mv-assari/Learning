@@ -30,6 +30,11 @@ namespace Domain.Orders
         public OrderStatus OrderStatus { get; private set; }
         private readonly List<OrderItem> _orderItems = new List<OrderItem>();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
+
+        public int TotalPrice()
+        {
+            return _orderItems.Sum(p => p.UnitPrice * p.Units);
+        }
         
     }
 

@@ -32,7 +32,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 66, DateTimeKind.Local).AddTicks(6510));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 102, DateTimeKind.Local).AddTicks(722));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(1321));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(598));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -109,7 +109,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(3078));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(2457));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -181,7 +181,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(4527));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(4017));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -231,7 +231,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(6223));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(5731));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -270,7 +270,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(7277));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(6935));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -303,7 +303,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(8410));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(8122));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -372,7 +372,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 73, DateTimeKind.Local).AddTicks(9886));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 109, DateTimeKind.Local).AddTicks(9807));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -418,7 +418,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 74, DateTimeKind.Local).AddTicks(1181));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 110, DateTimeKind.Local).AddTicks(1498));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -453,6 +453,53 @@ namespace Persistence.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("Domain.Payments.Payment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Authority")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DatePay")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("InsertTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 110, DateTimeKind.Local).AddTicks(2653));
+
+                    b.Property<bool>("IsPay")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRemoved")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("RefId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("payments");
+                });
+
             modelBuilder.Entity("Domain.Users.UserAddress", b =>
                 {
                     b.Property<int>("Id")
@@ -466,7 +513,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime?>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 10, 12, 12, 45, 38, 74, DateTimeKind.Local).AddTicks(2192));
+                        .HasDefaultValue(new DateTime(2026, 10, 16, 12, 34, 41, 110, DateTimeKind.Local).AddTicks(3778));
 
                     b.Property<bool>("IsRemoved")
                         .ValueGeneratedOnAdd()
@@ -606,6 +653,17 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Orders.Order", null)
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
+                });
+
+            modelBuilder.Entity("Domain.Payments.Payment", b =>
+                {
+                    b.HasOne("Domain.Orders.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Domain.Baskets.Basket", b =>

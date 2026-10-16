@@ -1,6 +1,7 @@
 ﻿using Domain.Baskets;
 using Domain.Catalogs;
 using Domain.Orders;
+using Domain.Payments;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,6 +23,7 @@ namespace Application.Interfaces.Contexts
         DbSet<UserAddress> UserAddresses { get; set; }
         DbSet<Order> Orders { get; set; }
         DbSet<OrderItem> OrderItems { get; set; }
+        DbSet<Payment> payments { get; set; }
         public int SaveChanges();
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);

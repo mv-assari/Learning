@@ -5,6 +5,7 @@ using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
 using Application.Orders;
+using Application.Payments;
 using Application.Users;
 using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
@@ -45,6 +46,7 @@ namespace WebSite.EndPoint
 
             #region ConnectionString
             services.AddScoped<IDataBaseContext, DataBaseContext>();
+            services.AddScoped<IIdentityDataBaseContext, IdentityDataBaseContext>();
             string connection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<DataBaseContext>(option =>
             {
@@ -73,6 +75,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IBasketService, BasketService>();
             services.AddTransient<IUserAddressService,UserAddressService>();
             services.AddTransient<IOrderService,OrderService>();
+            services.AddTransient<IPaymentService, PaymentService>();
 
 
             services.AddSignalR();
