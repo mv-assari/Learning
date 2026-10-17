@@ -1,5 +1,6 @@
 ﻿using Domain.Attributes;
 using Domain.Catalogs;
+using Domain.Discounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,12 @@ namespace Domain.Baskets
         public int Id { get; set; }
         public string BuyerId { get;private set; }
         private readonly List<BasketItem> _items = new List<BasketItem>();
+
+        public int DiscountAmount { get; private set; } = 0;
+        public Discount AppliedDiscount { get; private set; }
+        public int? AppliedDiscountId { get; private set; }
+
+
         public ICollection<BasketItem> Items => _items.AsReadOnly();
 
         public void AddItem(int unitPrice, int quantity, int catalogItemId)
@@ -31,7 +38,34 @@ namespace Domain.Baskets
             var existingItem = Items.FirstOrDefault(p=>p.CatalogItemId==catalogItemId);
             existingItem.AddQuantity(quantity);
         }
-        
+
+        public int TotalPrice()
+        {
+            int totalPrice = _items.Sum(p => p.UnitPrice * p.Quantity);
+            totalPrice -= AppliedDiscount.GetDiscountAmount(totalPrice);
+            return totalPrice;
+        }
+
+        public int TotalPriceWithOutDiescount()
+        {
+            int totalPrice = _items.Sum(p => p.UnitPrice * p.Quantity);
+            return totalPrice;
+        }
+
+        public void ApplyDiscountCode(Discount discount)
+        {
+            this.AppliedDiscount = discount;
+            this.AppliedDiscountId = discount.Id;
+            this.DiscountAmount = discount.GetDiscountAmount(TotalPriceWithOutDiescount());
+        }
+
+        public void RemoveDescount()
+        {
+            AppliedDiscount = null;
+            AppliedDiscountId = null;
+            DiscountAmount = 0;
+        }
+
     }
 
     [Auditable]

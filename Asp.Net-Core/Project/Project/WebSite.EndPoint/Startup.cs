@@ -3,6 +3,7 @@ using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
+using Application.Discounts;
 using Application.Interfaces.Contexts;
 using Application.Orders;
 using Application.Payments;
@@ -76,6 +77,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IUserAddressService,UserAddressService>();
             services.AddTransient<IOrderService,OrderService>();
             services.AddTransient<IPaymentService, PaymentService>();
+            services.AddTransient<IDiscountService, DiscountService>();
 
 
             services.AddSignalR();

@@ -1,4 +1,5 @@
 ﻿using Application.BasketsService;
+using Application.Discounts;
 using Application.Orders;
 using Application.Payments;
 using Application.Users;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using WebSite.EndPoint.Models.ViewModels.Basket;
 using WebSite.EndPoint.Utilities;
 
@@ -23,14 +25,16 @@ namespace WebSite.EndPoint.Controllers
         private readonly IUserAddressService userAddressService;
         private readonly IOrderService orderService;
         private readonly IPaymentService paymentService;
+        private readonly IDiscountService discountService;
 
-        public BasketController(IBasketService basketService, SignInManager<User> signInManager, IUserAddressService userAddressService, IOrderService orderService, IPaymentService paymentService)
+        public BasketController(IBasketService basketService, SignInManager<User> signInManager, IUserAddressService userAddressService, IOrderService orderService, IPaymentService paymentService, IDiscountService discountService)
         {
             this.basketService = basketService;
             this.signInManager = signInManager;
             this.userAddressService = userAddressService;
             this.orderService = orderService;
             this.paymentService = paymentService;
+            this.discountService = discountService;
         }
 
         [AllowAnonymous]
@@ -96,6 +100,35 @@ namespace WebSite.EndPoint.Controllers
         public IActionResult CheckOut()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult ApplyDiscount(string CouponCode, int BasketId)
+        {
+            var user = userManager.GetUserAsync(User).Result;
+            var valisDiscount = discountService.IsDiscountValid(CouponCode, user);
+
+
+            if (valisDiscount.IsSuccess)
+            {
+                discountService.ApplyDiscountInBasket(CouponCode, BasketId);
+            }
+            else
+            {
+                TempData["InvalidMessage"] = String.Join(Environment.NewLine, valisDiscount.Message.Select(a => String.Join(", ", a)));
+
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [AllowAnonymous]
+        public IActionResult RemoveDiscount(int id)
+        {
+            discountService.RemoveDiscountFromBasket(id);
+            return RedirectToAction(nameof(Index));
         }
 
         private BasketDto GetOrSetBasket()
