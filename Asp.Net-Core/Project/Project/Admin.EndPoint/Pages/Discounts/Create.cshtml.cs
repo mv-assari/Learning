@@ -1,3 +1,4 @@
+using Admin.EndPoint.Binders;
 using Application.Discounts.AddNewDiscountServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
