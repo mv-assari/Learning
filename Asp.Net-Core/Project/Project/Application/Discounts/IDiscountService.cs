@@ -81,8 +81,7 @@ namespace Application.Discounts
                 .Where(p => p.CouponCode.Equals(couponCode)).FirstOrDefault();
             if (discount == null)
             {
-                return new BaseDto(isSuccess: false,
-                    Message: new List<string> { "کد تخفیف معتبر نمی باشد" });
+                return new BaseDto(new List<string> { "کد تخفیف معتبر نمی باشد" }, isSuccess: false);
             }
 
             var now = DateTime.UtcNow;
@@ -90,21 +89,21 @@ namespace Application.Discounts
             {
                 var startDate = DateTime.SpecifyKind(discount.StartDate.Value, DateTimeKind.Utc);
                 if (startDate.CompareTo(now) > 0)
-                    return new BaseDto(false, new List<string>
-                    { "هنوز زمان استفاده از این کد تخفیف فرا نرسیده است" });
+                    return new BaseDto( new List<string>
+                    { "هنوز زمان استفاده از این کد تخفیف فرا نرسیده است" }, false);
             }
             if (discount.EndDate.HasValue)
             {
                 var endDate = DateTime.SpecifyKind(discount.EndDate.Value, DateTimeKind.Utc);
                 if (endDate.CompareTo(now) < 0)
-                    return new BaseDto(false, new List<string> { "کد تخفیف منقضی شده است" });
+                    return new BaseDto( new List<string> { "کد تخفیف منقضی شده است" }, false);
             }
 
             var checkLimit = CheckDiscountLimitations(discount, user);
 
             if (checkLimit.IsSuccess == false)
                 return checkLimit;
-            return new BaseDto(true, null);
+            return new BaseDto( null, true);
 
         }
 
@@ -115,19 +114,19 @@ namespace Application.Discounts
             {
                 case DiscountLimitationType.Unlimited:
                     {
-                        return new BaseDto(true, null);
+                        return new BaseDto(null, true);
                     }
                 case DiscountLimitationType.NTimesOnly:
                     {
                         var totalUsage = discountHistoryService.GetAllDiscountUsageHistory(discount.Id, null, 0, 1).Data.Count();
                         if (totalUsage < discount.LimitationTimes)
                         {
-                            return new BaseDto(true, null);
+                            return new BaseDto(null, true);
 
                         }
                         else
                         {
-                            return new BaseDto(false, new List<string> { "ظرفیت استفاده از این کد تخفیف تکمیل شده است" });
+                            return new BaseDto(new List<string> { "ظرفیت استفاده از این کد تخفیف تکمیل شده است" }, false);
 
                         }
                     }
@@ -138,22 +137,22 @@ namespace Application.Discounts
                             var totalUsage = discountHistoryService.GetAllDiscountUsageHistory(discount.Id, user.Id, 0, 1).Data.Count();
                             if (totalUsage < discount.LimitationTimes)
                             {
-                                return new BaseDto(true, null);
+                                return new BaseDto(null, true);
                             }
                             else
                             {
-                                return new BaseDto(false, new List<string> { "تعدادی که شما مجاز به استفاده از این تخفیف بوده اید به پایان رسیده است" });
+                                return new BaseDto(new List<string> { "تعدادی که شما مجاز به استفاده از این تخفیف بوده اید به پایان رسیده است" }, false);
                             }
                         }
                         else
                         {
-                            return new BaseDto(true, null);
+                            return new BaseDto(null, true);
                         }
                     }
                 default:
                     break;
             }
-            return new BaseDto(true, null);
+            return new BaseDto(null, true);
 
         }
 

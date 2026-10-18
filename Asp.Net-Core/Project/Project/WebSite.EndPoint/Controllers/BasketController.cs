@@ -26,8 +26,9 @@ namespace WebSite.EndPoint.Controllers
         private readonly IOrderService orderService;
         private readonly IPaymentService paymentService;
         private readonly IDiscountService discountService;
+        private readonly UserManager<User> userManager;
 
-        public BasketController(IBasketService basketService, SignInManager<User> signInManager, IUserAddressService userAddressService, IOrderService orderService, IPaymentService paymentService, IDiscountService discountService)
+        public BasketController(IBasketService basketService, SignInManager<User> signInManager, IUserAddressService userAddressService, IOrderService orderService, IPaymentService paymentService, IDiscountService discountService, UserManager<User> userManager)
         {
             this.basketService = basketService;
             this.signInManager = signInManager;
@@ -35,6 +36,7 @@ namespace WebSite.EndPoint.Controllers
             this.orderService = orderService;
             this.paymentService = paymentService;
             this.discountService = discountService;
+            this.userManager = userManager;
         }
 
         [AllowAnonymous]

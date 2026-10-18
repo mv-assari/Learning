@@ -10,6 +10,13 @@
     <div class="row mb-4">
         <div class="col-xl-9 col-lg-8 col-md-8 mb-md-0 mb-3">
             <div class="checkout-section shadow-around">
+
+                @if (TempData["InvalidMessage"] != null)
+                {
+                    <div class="alert alert-warning">
+                        <b> @TempData["InvalidMessage"]  </b><br />
+                    </div>
+                }
                 <div class="checkout-step">
                     <ul>
                         <li class="active"><span>سبد خرید</span></li>
