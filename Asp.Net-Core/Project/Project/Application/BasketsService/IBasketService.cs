@@ -79,6 +79,9 @@ namespace Application.BasketsService
                 .Include(p=>p.Items)
                 .ThenInclude(p=>p.CatalogItem)
                 .ThenInclude(p=>p.CatalogItemImages)
+                .Include(p => p.Items)
+                .ThenInclude(p => p.CatalogItem)
+                .ThenInclude(p => p.Discounts)
                 .SingleOrDefault(p => p.BuyerId == buyerId);
             if (basket ==null)
             {
@@ -96,7 +99,7 @@ namespace Application.BasketsService
                     Id = p.Id,
                     CatalogName = p.CatalogItem.Name,
                     Quantity = p.Quantity,
-                    UnitPrice = p.UnitPrice,
+                    UnitPrice = p.CatalogItem.Price,
                     ImageUrl = uriComposerService.ComposeImageUri(p?.CatalogItem?.CatalogItemImages?.FirstOrDefault()?.Src ?? "")
                 }).ToList()
             };
