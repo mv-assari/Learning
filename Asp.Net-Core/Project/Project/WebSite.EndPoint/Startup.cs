@@ -1,4 +1,5 @@
 using Application.BasketsService;
+using Application.Catalogs.CatalogItems.CatalogItemService;
 using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
@@ -79,6 +80,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IPaymentService, PaymentService>();
             services.AddTransient<IDiscountService, DiscountService>();
             services.AddTransient<IDiscountHistoryService, DiscountHistoryService>();
+            services.AddTransient<ICatalogItemService, CatalogItemService>();
 
 
             services.AddSignalR();

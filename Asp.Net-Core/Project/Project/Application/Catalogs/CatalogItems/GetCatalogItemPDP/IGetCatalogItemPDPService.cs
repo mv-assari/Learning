@@ -67,7 +67,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPDP
                 Price = catalogitem.Price,
                 Description = catalogitem.Description,
                 Images = catalogitem.CatalogItemImages.Select(p => uriComposerService.ComposeImageUri(p.Src)).ToList(),
-                Oldrice=catalogitem.OldPrice,
+                OldPrice=catalogitem.OldPrice,
                 PercentDiscount=catalogitem.PercentDiscount
             };
 
@@ -82,7 +82,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPDP
         public string Type { get; set; }
         public string Brand { get; set; }
         public int Price { get; set; }
-        public int? Oldrice { get; set; }
+        public int? OldPrice { get; set; }
         public int? PercentDiscount { get; set; }
 
         public List<string> Images { get; set; }
