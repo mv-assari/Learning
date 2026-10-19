@@ -1,5 +1,6 @@
 ﻿using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
+using Dto.Response.Payment;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebSite.EndPoint.Controllers
@@ -17,9 +18,9 @@ namespace WebSite.EndPoint.Controllers
             this.getCatalogIItemPLPService = getCatalogIItemPLPService;
             this.getCatalogItemPDPService = getCatalogItemPDPService;
         }
-        public IActionResult Index(int page = 1, int pageSize = 20)
+        public IActionResult Index(CatlogPLPRequestDto request)
         {
-            var data = getCatalogIItemPLPService.Execute(page, pageSize);
+            var data = getCatalogIItemPLPService.Execute(request);
             return View(data);
         }
 

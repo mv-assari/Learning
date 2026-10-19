@@ -1,4 +1,5 @@
 ﻿using Domain.Attributes;
+using Domain.Catalogs;
 using Domain.Discounts;
 using System;
 using System.Collections.Generic;
@@ -38,7 +39,7 @@ namespace Domain.Orders
         public OrderStatus OrderStatus { get; private set; }
         private readonly List<OrderItem> _orderItems = new List<OrderItem>();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
-
+        public CatalogItem CatalogItem { get; set; }
         public decimal DiscountAmount { get; private set; }
         public Discount AppliedDiscount { get; private set; }
         public int? AppliedDiscountId { get; private set; }
