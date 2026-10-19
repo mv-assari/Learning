@@ -7,6 +7,7 @@ using Application.Catalogs.GetMenuItem;
 using Application.Discounts;
 using Application.Interfaces.Contexts;
 using Application.Orders;
+using Application.Orders.CustomerOrdersServices;
 using Application.Payments;
 using Application.Users;
 using Application.Visitors.SaveVisitorInfo;
@@ -81,6 +82,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IDiscountService, DiscountService>();
             services.AddTransient<IDiscountHistoryService, DiscountHistoryService>();
             services.AddTransient<ICatalogItemService, CatalogItemService>();
+            services.AddTransient<ICustomerOrdersService, CustomerOrdersService>();
 
 
             services.AddSignalR();

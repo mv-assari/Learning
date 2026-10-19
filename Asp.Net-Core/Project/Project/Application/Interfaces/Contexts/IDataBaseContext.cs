@@ -5,8 +5,10 @@ using Domain.Orders;
 using Domain.Payments;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -32,5 +34,6 @@ namespace Application.Interfaces.Contexts
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+        EntityEntry Entry([NotNullAttribute]object  entity);
     }
 }
