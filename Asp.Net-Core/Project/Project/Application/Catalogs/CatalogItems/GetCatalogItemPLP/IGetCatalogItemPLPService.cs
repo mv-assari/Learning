@@ -107,6 +107,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPLP
                     Rate = 4,
                     Image = uriComposerService
                     .ComposeImageUri(p.CatalogItemImages.FirstOrDefault().Src),
+                    AvailableStock=p.AvailableStock,
                 }).ToList();
             return new PaginatedItemsDto<CatalogPLPDto>(request.page, request.pageSize, rowCount, data);
         }
@@ -164,5 +165,6 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPLP
         public int Price { get; set; }
         public string Image { get; set; }
         public byte Rate { get; set; }
+        public int AvailableStock { get; set; }
     }
 }
