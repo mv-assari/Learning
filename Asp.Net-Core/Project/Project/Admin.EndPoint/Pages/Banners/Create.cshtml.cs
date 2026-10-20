@@ -16,7 +16,7 @@ namespace Admin.EndPoint.Pages.Banners
     {
         private readonly IBannersService banners;
         private readonly IImageUploadService imageUploadService;
-        private readonly IDistributedCache _cache;
+        private readonly IDistributedCache cache;
 
         public CreateModel(IBannersService banners,
             IImageUploadService imageUploadService
@@ -24,7 +24,7 @@ namespace Admin.EndPoint.Pages.Banners
         {
             this.banners = banners;
             this.imageUploadService = imageUploadService;
-            _cache = distributedCache;
+            cache = distributedCache;
         }
 
 
@@ -48,7 +48,7 @@ namespace Admin.EndPoint.Pages.Banners
                 Banner.Image = result.FirstOrDefault();
                 banners.AddBanner(Banner);
 
-                _cache.Remove(CacheHelper.GenerateHomePageCacheKey());
+                cache.Remove(CacheHelper.GenerateHomePageCacheKey());
             }
             return RedirectToPage("Index");
 

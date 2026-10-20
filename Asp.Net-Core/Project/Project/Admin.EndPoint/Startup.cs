@@ -62,6 +62,13 @@ namespace Admin.EndPoint
                 option.UseSqlServer(connection);
             });
 
+            services.AddDistributedSqlServerCache(op =>
+            {
+                op.ConnectionString = connection;
+                op.SchemaName = "dbo";
+                op.TableName = "CacheData";
+            });
+
             //mapper
             services.AddAutoMapper(typeof(CatalogMappingProfile));
             services.AddAutoMapper(typeof(CatalogVMMappingProfile));

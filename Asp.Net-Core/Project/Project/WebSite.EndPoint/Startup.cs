@@ -58,6 +58,13 @@ namespace WebSite.EndPoint
                 option.UseSqlServer(connection);
             });
 
+            services.AddDistributedSqlServerCache(op =>
+            {
+                op.ConnectionString = connection;
+                op.SchemaName = "dbo";
+                op.TableName = "CacheData";
+            });
+
             services.AddIdentityService(Configuration);
             services.AddAuthorization();
             services.ConfigureApplicationCookie(option =>
