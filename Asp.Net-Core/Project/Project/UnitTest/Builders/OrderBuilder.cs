@@ -1,4 +1,4 @@
-﻿using Domain.Order;
+﻿using Domain.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace UnitTest.Builders
             {
                  new OrderItem(TestCatalogItemId,TestProductName,TestPictureUri,TestUnitPrice,TestUnits),
             };
-            return new Order(TestBuyerId, new AddressBuilder().Build(), testOrderItem, PaymentMethod.OnlinePaymnt, null);
+            return new Order(TestBuyerId, new AddressBuilder().Build(), testOrderItem, PaymentMethod.OnlinePayment, null);
         }
     }
 }

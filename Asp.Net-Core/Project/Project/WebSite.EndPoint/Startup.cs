@@ -4,6 +4,7 @@ using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
+using Application.Commetns.Commands;
 using Application.Discounts;
 using Application.HomePageService;
 using Application.Interfaces.Contexts;
@@ -15,6 +16,7 @@ using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfigs;
 using Infrastructure.MappingProfile;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,7 +50,7 @@ namespace WebSite.EndPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
+            services.AddMediatR(typeof(SendCommentCommand).Assembly);
             #region ConnectionString
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IIdentityDataBaseContext, IdentityDataBaseContext>();

@@ -1,4 +1,4 @@
-﻿using Domain.Order;
+﻿using Domain.Orders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +14,7 @@ namespace UnitTest.Builders
         public string TestState => "ValiAsr";
         public string TestZipCode => "275842154";
         public string TestPostalAddress => "Negar Tower";
+        public string TestReciverName => "MVA";
 
 
         public AddressBuilder()
@@ -27,7 +28,7 @@ namespace UnitTest.Builders
         }
         private Address WithDefaultValues()
         {
-            _address = new Address(TestCity, TestState, TestZipCode, TestPostalAddress);
+            _address = new Address(TestCity, TestState, TestZipCode, TestPostalAddress, TestReciverName);
             return _address;
         }
     }

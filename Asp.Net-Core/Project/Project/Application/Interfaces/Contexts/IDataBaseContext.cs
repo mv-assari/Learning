@@ -32,6 +32,7 @@ namespace Application.Interfaces.Contexts
         DbSet<DiscountUsageHistory> DiscountUsageHistories { get; set; }
         DbSet<CatalogItemFavourite> CatalogItemFavourites { get; set; }
         DbSet<Banner> Banners { get; set; }
+        DbSet<CatalogItemComment> CatalogItemComments { get; set; }
         public int SaveChanges();
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);

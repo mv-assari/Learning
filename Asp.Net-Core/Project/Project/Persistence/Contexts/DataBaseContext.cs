@@ -36,6 +36,7 @@ namespace Persistence.Contexts
         public DbSet<DiscountUsageHistory> DiscountUsageHistories { get; set; }
         public DbSet<CatalogItemFavourite> CatalogItemFavourites { get; set; }
         public DbSet<Banner> Banners { get; set; }
+        public DbSet<CatalogItemComment> CatalogItemComments{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
