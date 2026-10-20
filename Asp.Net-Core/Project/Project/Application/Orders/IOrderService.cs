@@ -1,5 +1,6 @@
 ﻿using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Discounts;
+using Application.Exceptions;
 using Application.Interfaces.Contexts;
 using AutoMapper;
 using Domain.Orders;
@@ -42,6 +43,11 @@ namespace Application.Orders
                          .Include(p => p.Items)
                          .Include(p=>p.AppliedDiscount)
                          .SingleOrDefault(p => p.Id == BasketId);
+
+            if (basket==null)
+            {
+                throw new NotFoundException(nameof(basket), BasketId);
+            }
 
             int[] Ids = basket.Items.Select(p => p.CatalogItemId).ToArray();
             var catalogItems = context.catalogItems

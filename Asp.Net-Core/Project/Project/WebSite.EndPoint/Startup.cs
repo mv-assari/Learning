@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebSite.EndPoint.Hubs;
+using WebSite.EndPoint.Midlewares;
 using WebSite.EndPoint.Utilities.Filters;
 using WebSite.EndPoint.Utilities.Middlewares;
 
@@ -108,6 +109,7 @@ namespace WebSite.EndPoint
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseCustomExceptionHandler();
             app.UseSetVisitorId();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
