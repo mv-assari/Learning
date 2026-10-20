@@ -1,4 +1,5 @@
-﻿using Domain.Baskets;
+﻿using Domain.Banners;
+using Domain.Baskets;
 using Domain.Catalogs;
 using Domain.Discounts;
 using Domain.Orders;
@@ -30,6 +31,7 @@ namespace Application.Interfaces.Contexts
         DbSet<Discount> Discounts { get; set; }
         DbSet<DiscountUsageHistory> DiscountUsageHistories { get; set; }
         DbSet<CatalogItemFavourite> CatalogItemFavourites { get; set; }
+        DbSet<Banner> Banners { get; set; }
         public int SaveChanges();
         public int SaveChanges(bool acceptAllChangesOnSuccess);
         public Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);

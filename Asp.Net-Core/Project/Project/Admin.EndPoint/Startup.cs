@@ -1,4 +1,5 @@
 using Admin.EndPoint.MappingProfiles;
+using Application.Banners;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
 using Application.Catalogs.CatalogItems.CatalogItemService;
 using Application.Catalogs.CatalogTypes;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistence.Contexts;
 using Persistence.Contexts.MongoContext;
+using Persistence.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +54,7 @@ namespace Admin.EndPoint
             services.AddTransient<IImageUploadService,ImageUploadService>();
             services.AddTransient<IAddNewDiscountService, AddNewDiscountService>();
             services.AddTransient<IDiscountService, DiscountService>();
+            services.AddTransient<IBannersService, BannersService>();
 
             string connection = Configuration["ConnectionStrings:SqlServer"];
             services.AddDbContext<DataBaseContext>(option =>

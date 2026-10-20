@@ -5,6 +5,7 @@ using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Catalogs.GetMenuItem;
 using Application.Discounts;
+using Application.HomePageService;
 using Application.Interfaces.Contexts;
 using Application.Orders;
 using Application.Orders.CustomerOrdersServices;
@@ -83,6 +84,7 @@ namespace WebSite.EndPoint
             services.AddTransient<IDiscountHistoryService, DiscountHistoryService>();
             services.AddTransient<ICatalogItemService, CatalogItemService>();
             services.AddTransient<ICustomerOrdersService, CustomerOrdersService>();
+            services.AddTransient<IHomePageService,HomePageService>();
 
 
             services.AddSignalR();
