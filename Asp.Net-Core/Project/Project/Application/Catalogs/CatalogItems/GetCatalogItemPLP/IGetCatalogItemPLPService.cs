@@ -102,6 +102,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPLP
                 .Select(p => new CatalogPLPDto
                 {
                     Id = p.Id,
+                    Slug=p.Slug,
                     Name = p.Name,
                     Price = p.Price,
                     Rate = 4,

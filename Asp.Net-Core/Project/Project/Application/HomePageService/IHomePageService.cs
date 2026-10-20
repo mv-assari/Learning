@@ -1,5 +1,5 @@
-﻿using Application.Catalogs.CatalogItems.GetCatalogIItemPLP;
-using Application.Catalogs.CatalogItems.UriComposer;
+﻿using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
+using Application.Catalogs.CatalogItems.UriComposre;
 using Application.Interfaces.Contexts;
 using Domain.Banners;
 using System;
@@ -19,11 +19,11 @@ namespace Application.HomePageService
     {
         private readonly IDataBaseContext context;
         private readonly IUriComposerService uriComposerService;
-        private readonly IGetCatalogIItemPLPService getCatalogIItemPLPService;
+        private readonly IGetCatalogItemPLPService getCatalogIItemPLPService;
 
         public HomePageService(IDataBaseContext context
             , IUriComposerService uriComposerService
-            , IGetCatalogIItemPLPService getCatalogIItemPLPService)
+            , IGetCatalogItemPLPService getCatalogIItemPLPService)
         {
             this.context = context;
             this.uriComposerService = uriComposerService;

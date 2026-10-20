@@ -24,9 +24,9 @@ namespace WebSite.EndPoint.Controllers
             return View(data);
         }
 
-        public IActionResult Details(int Id)
+        public IActionResult Details(string slug)
         {
-            var data = getCatalogItemPDPService.Execute(Id);
+            var data = getCatalogItemPDPService.Execute(slug);
             return View(data);
         }
     }
